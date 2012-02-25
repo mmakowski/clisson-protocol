@@ -10,3 +10,5 @@ libraryDependencies ++= Seq(
   "com.google.code.gson" % "gson" % "2.1",
   "org.specs2" %% "specs2" % "1.8.2" % "test"
 )
+
+crossPaths := false
