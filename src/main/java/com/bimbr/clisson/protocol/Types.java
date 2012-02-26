@@ -24,8 +24,10 @@ public final class Types {
     /**
      * @param type type name
      * @return class corresponding to {@code type}
+     * @throws IllegalArgumentException if {@code type} is not a Clisson protocol data type
      */
     public static Class<?> classFor(String type) {
+        if (!classes.containsKey(type)) throw new IllegalArgumentException("unknown type: " + type);
         return classes.get(type);
     }
     
