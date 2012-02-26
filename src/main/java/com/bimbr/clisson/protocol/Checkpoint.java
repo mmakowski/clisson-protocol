@@ -9,7 +9,7 @@ import static com.bimbr.clisson.util.Arguments.*;
  * @author mmakowski
  * @since 1.0.0
  */
-public final class CheckpointEvent implements Event {
+public final class Checkpoint implements Event {
     private final EventHeader eventHeader;
     private final String messageId;
     private final String description;
@@ -20,7 +20,7 @@ public final class CheckpointEvent implements Event {
      * @param description the description of the checkpoint; must not be {@code null}
      * @since 1.0.0
      */
-    public CheckpointEvent(final EventHeader eventHeader, 
+    public Checkpoint(final EventHeader eventHeader, 
                            final String      messageId,
                            final String      description) {
         this.eventHeader = nonNull(eventHeader, "eventHeader");
@@ -67,7 +67,7 @@ public final class CheckpointEvent implements Event {
         if (this == obj) return true;
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        CheckpointEvent that = (CheckpointEvent) obj;
+        Checkpoint that = (Checkpoint) obj;
         return eventHeader.equals(that.eventHeader) &&
                messageId.equals(that.messageId) &&
                description.equals(that.description);
