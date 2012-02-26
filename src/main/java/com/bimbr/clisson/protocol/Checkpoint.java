@@ -1,7 +1,9 @@
 package com.bimbr.clisson.protocol;
 
 import static com.bimbr.clisson.protocol.Json.jsonFor;
-import static com.bimbr.clisson.util.Arguments.*;
+import static com.bimbr.clisson.protocol.Types.id;
+import static com.bimbr.clisson.util.Arguments.nonEmpty;
+import static com.bimbr.clisson.util.Arguments.nonNull;
 
 /**
  * Checkpoint event records that a message has arrived at certain point of processing.
@@ -75,6 +77,6 @@ public final class Checkpoint implements Event {
     
     @Override
     public String toString() {
-        return "CheckpointEvent " + jsonFor(this);
+        return id(getClass()) + jsonFor(this);
     }
 }
