@@ -1,5 +1,8 @@
 package com.bimbr.clisson.protocol;
 
+import static com.bimbr.clisson.util.Arguments.nonEmpty;
+import static com.bimbr.clisson.util.Arguments.nonNull;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -12,11 +15,11 @@ import com.google.gson.GsonBuilder;
 public final class Json {
     /**
      * Converts supplied object to JSON.
-     * @param o object to convert to JSON
+     * @param object object to convert to JSON
      * @return JSON representation of {@code o}
      */
-    public static String jsonFor(Object o) {
-        return gson().toJson(o);
+    public static String jsonFor(Object object) {
+        return gson().toJson(nonNull(object, "object"));
     }
 
     /**
@@ -26,7 +29,7 @@ public final class Json {
      * @return object representing {@code json}
      */
     public static <T> T fromJson(String json, Class<T> cls) {
-        return gson().fromJson(json, cls);
+        return gson().fromJson(nonEmpty(json, "json"), cls);
     }
     
     private static Gson gson() {
