@@ -23,8 +23,8 @@ public final class Checkpoint implements Event {
      * @since 1.0.0
      */
     public Checkpoint(final EventHeader eventHeader, 
-                           final String      messageId,
-                           final String      description) {
+                      final String      messageId,
+                      final String      description) {
         this.eventHeader = nonNull(eventHeader, "eventHeader");
         this.messageId   = nonEmpty(messageId, "messageId");
         this.description = nonNull(description, "description");
@@ -77,6 +77,6 @@ public final class Checkpoint implements Event {
     
     @Override
     public String toString() {
-        return id(getClass()) + jsonFor(this);
+        return id(getClass()) + " " + jsonFor(this);
     }
 }

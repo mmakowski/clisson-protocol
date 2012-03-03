@@ -7,8 +7,7 @@ import com.bimbr.clisson.protocol.Json._
 import org.specs2.mutable._
 
 class EventHeaderSpec extends Specification {
-  "EventHeader" should {
-    
+  "EventHeader construction" should {
     "require non-empty component id on construction" in {
       new EventHeader("", Timestamp, Priority) must throwAn [IllegalArgumentException]
     }
@@ -16,8 +15,9 @@ class EventHeaderSpec extends Specification {
     "require non-null timeestamp on construction" in {
       new EventHeader(SrcId, null, Priority) must throwAn [IllegalArgumentException]
     }
-    
-    "serialise and then deserialise to equal object" in {
+  }
+  "EventHeader serialisation" should {
+    "be reversible" in {
       fromJson(jsonFor(Header), classOf[EventHeader]) mustEqual Header
     }
   }
