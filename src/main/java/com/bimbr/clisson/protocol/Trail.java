@@ -83,6 +83,16 @@ public final class Trail implements StandaloneObject {
     }
     
     @Override
+    public int hashCode() {
+        final int prime = 37;
+        int result = 1;
+        result = prime * result + events.hashCode();
+        result = prime * result + eventGraph.hashCode();
+        result = prime * result + initialEventIds.hashCode();
+        return result;
+    }
+    
+    @Override
     public String toString() {
         return id(getClass()) + " " + jsonFor(this);
     }
