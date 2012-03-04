@@ -38,6 +38,20 @@ public final class Arguments {
     }
     
     /**
+     * Checks that argument is a non-empty set.
+     * @param arg the argument whose value is to be checked
+     * @param argName the name of the argument, for diagnostics
+     * @return the value of {@code arg}
+     * @throws IllegalArgumentException if {@code arg} is null or an empty set
+     * @since 1.0.0
+     */
+    public static <E> Set<E> nonEmpty(Set<E> arg, String argName) {
+        nonNull(arg, argName);
+        if (arg.isEmpty()) throw new IllegalArgumentException(argName + " is an empty set");
+        return arg;
+    }
+    
+    /**
      * Checks that map does not contain null keys and null values.
      * @param arg the map whose keys and values are to be verified
      * @param argName the name of the argument, for diagnostics
@@ -60,7 +74,7 @@ public final class Arguments {
      * @throws IllegalArgumentException if {@code arg} is null or contains null values
      * @since 1.0.0
      */
-    public static <E> Set<E> setWithNonNullValues(Set<E> arg, String argName) {
+    public static <E> Set<E> setWithNonNullElements(Set<E> arg, String argName) {
         nonNull(arg, argName);
         if (arg.contains(null)) throw new IllegalArgumentException(argName + " contains null: " + arg.toString());
         return arg;

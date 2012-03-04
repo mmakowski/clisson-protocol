@@ -2,7 +2,7 @@ package com.bimbr.clisson.protocol;
 
 import static com.bimbr.clisson.protocol.Json.jsonFor;
 import static com.bimbr.clisson.protocol.Types.id;
-import static com.bimbr.clisson.util.Arguments.setWithNonNullValues;
+import static com.bimbr.clisson.util.Arguments.setWithNonNullElements;
 import static com.bimbr.clisson.util.Arguments.mapWithNonNullKeysAndValues;
 import static com.bimbr.clisson.util.Collections.immutableCopyOf;
 import static java.util.Collections.unmodifiableList;
@@ -40,7 +40,7 @@ public final class Trail implements StandaloneObject {
                  final Set<Long>            initialEventIds) {
         this.events          = immutableCopyOf(mapWithNonNullKeysAndValues(events, "events"));
         this.eventGraph      = deeplyImmutableCopyOf(mapWithNonNullKeysAndValues(eventGraph, "eventGraph"));
-        this.initialEventIds = immutableCopyOf(setWithNonNullValues(initialEventIds, "initialEventIds"));
+        this.initialEventIds = immutableCopyOf(setWithNonNullElements(initialEventIds, "initialEventIds"));
         assertEventsDefined(eventGraph.keySet(), "event graph keys");
         for (Set<Long> eventIdSet: eventGraph.values()) assertEventsDefined(eventIdSet, "event graph values");
         assertEventsDefined(initialEventIds, "initial event list");

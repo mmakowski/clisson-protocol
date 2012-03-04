@@ -35,6 +35,7 @@ public final class Types {
         Map<String, Class<?>> classes = new TreeMap<String, Class<?>>();
         classes.put(id(Checkpoint.class), Checkpoint.class);
         classes.put(id(Error.class),      Error.class);
+        classes.put(id(Split.class),      Split.class);
         classes.put(id(Trail.class),      Trail.class);
         return Collections.unmodifiableMap(classes);
     }
