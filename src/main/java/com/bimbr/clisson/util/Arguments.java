@@ -61,7 +61,12 @@ public final class Arguments {
      */
     public static <K, V> Map<K, V> mapWithNonNullKeysAndValues(Map<K, V> arg, String argName) {
         nonNull(arg, argName);
-        if (arg.containsKey(null)) throw new IllegalArgumentException(argName + " contains null key: " + arg.toString());
+        try {
+            if (arg.containsKey(null)) throw new IllegalArgumentException(argName + " contains null key: " + arg.toString());
+        } catch (NullPointerException e) {
+            // some implementations of Map (e.g. TreeMap) throw NPE when null is passed to containsKey() -- assume in this case the map doesn't contain null
+            // OK
+        }
         if (arg.containsValue(null)) throw new IllegalArgumentException(argName + " contains null value: " + arg.toString());
         return arg;
     }
@@ -76,7 +81,12 @@ public final class Arguments {
      */
     public static <E> Set<E> setWithNonNullElements(Set<E> arg, String argName) {
         nonNull(arg, argName);
-        if (arg.contains(null)) throw new IllegalArgumentException(argName + " contains null: " + arg.toString());
+        try {
+            if (arg.contains(null)) throw new IllegalArgumentException(argName + " contains null: " + arg.toString());
+        } catch (NullPointerException e) {
+            // some implementations of Set (e.g. TreeSet) throw NPE when null is passed to contains() -- assume in this case the set doesn't contain null
+            // OK
+        }
         return arg;
     }
     
