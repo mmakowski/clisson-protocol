@@ -99,7 +99,7 @@ public final class Trail implements StandaloneObject {
     
     private static Comparator<Event> timestampComparator = new Comparator<Event>() {
         public int compare(Event e1, Event e2) {
-            return e1.getEventHeader().getTimestamp().compareTo(e2.getEventHeader().getTimestamp());
+            return e1.getTimestamp().compareTo(e2.getTimestamp());
         }
     };
 }

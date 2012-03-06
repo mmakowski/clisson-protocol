@@ -72,9 +72,10 @@ class TrailSpec extends Specification {
   "Trail JSON serialisation" should {
     "be reversible" in {
       // should not use mocks here
-      val events = Map[JLong, Event]((1, new Checkpoint(new EventHeader("test", ts("2012-03-01 12:00:00.001"), 1), "msg-1", "e1")),
-                                     (2, new Checkpoint(new EventHeader("test", ts("2012-03-02 12:01:00.001"), 1), "msg-1", "e2")),
-                                     (3, new Checkpoint(new EventHeader("test", ts("2012-03-03 13:01:00.001"), 1), "msg-1", "e3")))
+      val msgs = Set("msg-1")
+      val events = Map[JLong, Event]((1, new Event("test", ts("2012-03-01 12:00:00.001"), msgs, msgs, "e1")),
+                                     (2, new Event("test", ts("2012-03-02 12:01:00.001"), msgs, msgs, "e2")),
+                                     (3, new Event("test", ts("2012-03-03 13:01:00.001"), msgs, msgs, "e3")))
       val trail = new Trail(events, EventGraph, InitialEventIds)
       
       fromJson(jsonFor(trail), classOf[Trail]) mustEqual trail
@@ -83,7 +84,7 @@ class TrailSpec extends Specification {
   
   private def beInChronologicalOrder: Matcher[Traversable[Event]] = ({ events: Traversable[Event] =>
       val eventList = events.toList
-      def timestamp(e: Event) = e.getEventHeader.getTimestamp
+      def timestamp(e: Event) = e.getTimestamp
       eventList.map(timestamp).sorted == eventList.map(timestamp)
     }, 
     "is not in chronological order")
@@ -96,8 +97,7 @@ class TrailSpec extends Specification {
     
     def eventWithTimestamp(timestampStr: String) = {
       val event = mock[Event]
-      val header = new EventHeader("id", ts(timestampStr), 1)
-      event.getEventHeader returns header
+      event.getTimestamp returns ts(timestampStr)
       event
     }
   }
