@@ -36,6 +36,18 @@ public final class Arguments {
         if (arg.length() == 0) throw new IllegalArgumentException(argName + " is an empty string");
         return arg;
     }
+
+    /**
+     * Checks that argument is a positive integer. 
+     * @param arg the argument whose value is to be checked
+     * @param argName the name of the argument, for diagnostics
+     * @return the value of {@code arg}
+     * @since 1.0.0
+     */
+    public static int positive(int arg, String argName) {
+        if (arg <= 0) throw new IllegalArgumentException(argName + " must be positive but was " + arg);
+        return arg;
+    }
     
     /**
      * Checks that argument is a non-empty set.
