@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.Set;
 
 /**
+ * An event that occurred during message processing.
+ * 
  * @author mmakowski
  * @since 1.0.0
  */
