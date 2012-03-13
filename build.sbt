@@ -6,6 +6,10 @@ version := "0.1.0-SNAPSHOT"
 
 scalaVersion := "2.9.1"
 
+licenses := Seq("BSD-style" -> url("http://www.opensource.org/licenses/bsd-license.php"))
+
+homepage := Some(url("https://github.com/mmakowski/clisson-protocol"))
+
 libraryDependencies ++= Seq(
   "com.google.code.gson"  % "gson"        % "2.1",
   "junit"                 % "junit"       % "4.10"  % "test", 
@@ -31,9 +35,7 @@ publishTo <<= version { (v: String) =>
 
 pomIncludeRepository := { _ => false }
 
-licenses := Seq("BSD-style" -> url("http://www.opensource.org/licenses/bsd-license.php"))
-
-homepage := Some(url("https://github.com/mmakowski/clisson-protocol"))
+autoScalaLibrary := false
 
 pomExtra := (
   <scm>
