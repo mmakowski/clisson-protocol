@@ -33,6 +33,7 @@ public final class Json {
     }
     
     private static Gson gson() {
+        // TODO: change to ISO-whatever
         return new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ")
                                 .create();
     }
